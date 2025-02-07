@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivre votre commande</title>
+    <link rel="stylesheet" href="static/style.css"> 
+</head>
+
+<body>
+
+    <header>
+        <h1>Fleuropa</h1>
+    </header>
+
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/buy">Acheter</a>
+        <a href="/tracking" class="tracking">Tracking</a>
+        
+        {% if 'logged_in' in session and session['logged_in'] %}
+        <a href="/deconnection" style="float: right;">Déconnexion</a>
+        {% else %}
+        <a href="/connection" style="float: right;">Connexion</a>
+        {% endif %}
+    </nav>
+
+
+    <h2>Tracking réussie</h2>
+    <p>Référence du commande: <b>{{ ref_com }}</b></p>
+    <p>Destination de la livraison: <b>{{ ville_dest }}</b></p>
+    <p>Date de Commande: <b>{{ date_com }}</b></p>
+    <p>Etat de commande: <b>{{ etat_com }}</b></p>
+    <p>Mode de livraison: <b>{{ livraison }}</b></p>
+    {% if (est_coursier) %}
+    <p>Nom coursier: <b>{{ nom_coursier }}</b></p>
+    <p>Prenom coursier: <b>{{ prenom_coursier }}</b></p>
+    {% endif %}
+    
+</body>
+</html>

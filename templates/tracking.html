@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivre votre commande - Fleuropa</title>
+    <!-- <link rel="stylesheet" href="static/style.css">  -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        nav a.tracking {
+            width: 70px; /* Adjust the width as needed */
+        }
+        
+
+        .tracking-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tracking-label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tracking-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .tracking-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tracking-button:hover {
+            background-color: #2776a5;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Fleuropa</h1>
+    </header>
+
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/buy">Acheter</a>
+        <a href="/tracking" class="tracking">Tracking</a>
+        {% if 'logged_in' in session and session['logged_in'] %}
+        <a href="/deconnection" style="float: right;">Déconnexion</a>
+        {% else %}
+        <a href="/connection" style="float: right;">Connexion</a>
+        {% endif %}
+    </nav>
+
+    <div class="tracking-container">
+        <b><u><p>Tracking de votre commande</p></u></b>
+
+        <form action="/track" method="post">
+            <label for="ref_com" class="tracking-label">Référence du commande :</label>
+            <input type="text" name="ref_com" id="ref_com" class="tracking-input" pattern="\d+" title="Entrer que des entiers positives" required>
+
+            <button type="submit" class="tracking-button">Rechercher</button>
+        </form>
+
+    </div>
+</body>
+
+</html>

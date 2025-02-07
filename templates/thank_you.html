@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merci</title>
+    
+    <link rel="stylesheet" href="static/style.css"> 
+
+</head>
+<body>
+    <header>
+        <h1>Fleuropa</h1>
+    </header>
+
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/buy">Acheter</a>
+        <a href="/tracking" class="tracking">Tracking</a>
+        {% if 'logged_in' in session and session['logged_in'] %}
+        <a href="/deconnection" style="float: right;">Déconnexion</a>
+        {% else %}
+        <a href="/connection" style="float: right;">Connection</a>
+        {% endif %}
+    </nav>
+
+    <h2>Merci pour votre achat!</h2>
+
+    <h2>Votre commande avec référence {{ ref_com_print }} a été passée avec succès, merci de la mémoriser.</h2>
+
+</body>
+</html>

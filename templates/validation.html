@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleuropa - Confirmation de votre achat</title>
+    
+    <link rel="stylesheet" href="static/style.css"> 
+
+</head>
+
+<body>
+    <header>
+        <h1>Fleuropa</h1>
+    </header>
+
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/buy">Buy</a>
+        <a href="/tracking" class="tracking">Tracking</a>
+        <a href="/connection" style="float: right;">Connection</a>
+    </nav>
+
+    <h2>Confirmation de votre achat</h2>
+
+    {% if (quantite) %}
+    <h2>Vous voulez acheter {{quantite}} {{type_fleur}}, alors le prix total est {{prix_total}} €</h2>
+    <h2>Veuillez renseigner vos coordonnées bancaires</h2>
+    {% endif %}
+
+    <form action="/validation" method="post">
+
+        <label for="numero_cb">Numéro de carte (16 chiffres) :</label>
+        <input type="text" name="numero_cb" id="numero_cb" pattern="\d{16}" title="Entrez 16 chiffres de votre carte bancaire" required>
+
+        <label for="date_cb">Expire le (MM/AA):</label>
+        <input type="text" name="date_cb" id="date_cb" pattern="(0[1-9]|1[0-2])/\d{2}" title="Enter a valid expiration date (MM/YY)" required>
+        
+        <label for="crypto">Cryptogramme (3 chiffres):</label>
+        <input type="text" name="crypto" id="crypto" pattern="\d{3}" title="Enter votre crypto (3 chiffres)" required>
+        
+        <button type="submit">Commander</button>
+    </form>
+
+</body>
+</html>

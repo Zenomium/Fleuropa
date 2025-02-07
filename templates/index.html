@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleuropa</title>
+    <link rel="stylesheet" href="static/style.css"> 
+</head>
+
+<body>
+    <header>
+        <h1>Fleuropa</h1>
+    </header>
+
+    <!-- LA PAGE D'ACCUEIL -->
+
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/buy">Acheter</a>
+        <a href="/tracking" class="tracking">Tracking</a>
+        
+        {% if 'logged_in' in session and session['logged_in'] %}
+        <a href="/deconnection" style="float: right;">Déconnexion</a>
+        {% else %}
+        <a href="/connection" style="float: right;">Connexion</a>
+        {% endif %}
+    </nav>
+
+
+    <div class="flower-container">
+        <ul class="flower-list">
+
+            {% for name, extension in types_fleurs.items() %}
+            <li class="flower">
+                <a href="{{ url_for('fleur_page', fleur=name) }}">
+                    <img src="{{ url_for('static', filename=extension) }}" alt="{{name}}">
+                </a>
+                <h3>{{ name.capitalize() }}</h3>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
